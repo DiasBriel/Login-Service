@@ -1,12 +1,14 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
+import { AppDataSource } from './data-source';
 
-const app: Express = express();
-const port = process.env.PORT || 3000;
+AppDataSource.initialize().then(() => {
+  const app: Express = express();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+  app.use(express.json())
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+  app.get('/', (req, res)=> {
+    return res.json("Deu bom")
+  })
+
+  return app.listen(process.env.PORT)
+})
