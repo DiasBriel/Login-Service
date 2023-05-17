@@ -6,13 +6,13 @@ export default class User {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column()
+  @Column("text")
   name: string
 
-  @Column()
+  @Column("text")
   email: string
 
-  @Column()
+  @Column("text")
   password: string
 
   @CreateDateColumn({ name: 'created_at' }) 
