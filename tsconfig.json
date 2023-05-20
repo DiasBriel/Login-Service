@@ -2,13 +2,17 @@
   "compilerOptions": {
     "target": "es2016", 
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,                  
-    "module": "commonjs",                                
-    "rootDir": "./",                                  
-    "types": ["reflect-metadata"],                            
+    "emitDecoratorMetadata": true,    
+    "lib": ["es5", "es6", "ES2018"],              
+    "module": "CommonJS",                                
+    "rootDir": "./",     
+    "outDir": "./dist",                             
+    "types": ["reflect-metadata", "jest"],                            
     "esModuleInterop": true,                    
     "forceConsistentCasingInFileNames": true,
     "strict": false,               
-    "skipLibCheck": true                              
-  }
+    "skipLibCheck": true,    
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]                 
 }
