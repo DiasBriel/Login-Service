@@ -15,11 +15,11 @@ export default class User {
   @Column("text")
   password: string
 
-  @CreateDateColumn({ name: 'created_at' }) 
-  created_at: Date
+  @CreateDateColumn({ name: 'createdAt' }) 
+  createdAt: Date
 
-  @UpdateDateColumn({ name: 'updated_at' }) 
-  updated_at: Date
+  @UpdateDateColumn({ name: 'updatedAt' }) 
+  updatedAt: Date
 
   constructor() {
     if (!this.id) {

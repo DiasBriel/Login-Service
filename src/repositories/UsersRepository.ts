@@ -1,4 +1,4 @@
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import User from "../entities/User";
 import { IUsersRepository } from "../interfaces/IUsersRepository";
 
@@ -15,6 +15,12 @@ export default class UsersRepository implements IUsersRepository {
   public async findOne(id: string): Promise<User> {
     return await this.repository.findOneBy({
       id
+    })
+  }
+
+  public async findOneByEmail(email: string): Promise<User> {
+    return await this.repository.findOneBy({
+      email
     })
   }
 
