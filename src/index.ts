@@ -13,5 +13,5 @@ AppDataSource.initialize().then(() => {
   app.use(routes);
   app.use(errorMiddleware);
 
-  return app.listen(process.env.PORT);
+  return app.listen(process.env.PORT, () => console.log("Server is listening at port " + process.env.PORT));
 })

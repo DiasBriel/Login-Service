@@ -6,11 +6,11 @@ import { ConflictError } from "../shared/errors/apiError";
 export default class CheckUserEmailService {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: IUsersRepository
+    private repository: IUsersRepository
   ) {}
 
   public async execute(email: string): Promise<void> {
-    const checkEmail = await this.usersRepository.findOneByEmail(email)
+    const checkEmail = await this.repository.findOneByEmail(email)
 
     if(checkEmail) {
       throw new ConflictError('Este e-mail já está cadastrado!')

@@ -6,10 +6,10 @@ import { IUsersRepository } from "../interfaces/IUsersRepository";
 export default class CreateUserService {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: IUsersRepository
+    private repository: IUsersRepository
   ) {}
 
   public async execute(data: Partial<User>): Promise<User> {
-    return await this.usersRepository.create(data);
+    return await this.repository.create(data);
   }
 }
