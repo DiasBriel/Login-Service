@@ -1,4 +1,4 @@
-import 'express-async-errors'
+import "express-async-errors";
 import "reflect-metadata";
 import "./shared/containers";
 import express, { Express } from "express";
@@ -13,5 +13,9 @@ AppDataSource.initialize().then(() => {
   app.use(routes);
   app.use(errorMiddleware);
 
-  return app.listen(process.env.PORT, () => console.log("Server is listening at port " + process.env.PORT));
-})
+  const port = process.env.PORT;
+
+  return app.listen(port, () => 
+    console.log(`Server is listening at port ${port}`)
+  );
+});

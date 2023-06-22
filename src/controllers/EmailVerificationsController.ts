@@ -5,7 +5,7 @@ import CreateEmailVerificationService from "../services/CreateEmailVerificationS
 export default class EmailVerificationsController {
   public async create(req: Request, res: Response): Promise<Response> {
     const createEmailVerificationService = container.resolve(CreateEmailVerificationService);
-    const emailVerification = await createEmailVerificationService.execute(req.body);
+    const emailVerification = await createEmailVerificationService.execute(req.body.email);
 
     return res.status(200).json(emailVerification);
   }

@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidv4 } from 'uuid';
+import { EmailVerificationStatus } from "../enums/EmailVerificationStatus";
 
 @Entity('email_verifications')
 export default class EmailVerification {
@@ -14,6 +15,12 @@ export default class EmailVerification {
 
   @Column("timestamp")
   expiresAt: Date
+
+  @Column({
+    type: "enum",
+    enum: EmailVerificationStatus
+  })
+  status: EmailVerificationStatus
 
   @CreateDateColumn({ name: 'createdAt' }) 
   createdAt: Date
