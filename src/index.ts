@@ -1,6 +1,6 @@
 import "express-async-errors";
 import "reflect-metadata";
-import "./shared/containers";
+import "./containers";
 import express, { Express } from "express";
 import AppDataSource from "./data-source";
 import routes from "./routes/router";

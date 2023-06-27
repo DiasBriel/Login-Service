@@ -1,4 +1,4 @@
-export enum EmailVerificationStatus {
+export enum EmailVerificationStatusEnum {
   ACTIVE = 'active',
   EXPIRED = 'expired'
 }

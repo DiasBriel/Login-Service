@@ -12,7 +12,7 @@ export default class UsersController {
 
     const createUserService = container.resolve(CreateUserService);
     const user = await createUserService.execute(req.body);
-    
+
     return res.status(201).json(user);
   }
 }

@@ -1,9 +1,9 @@
 import { addMinutes } from "date-fns";
 import { inject, injectable } from "tsyringe";
 import EmailVerification from "../entities/EmailVerification";
-import { EmailVerificationStatus } from "../enums/EmailVerificationStatus";
-import { emailTokenGenerator } from "../helpers/emailTokenGenerator";
+import { EmailVerificationStatusEnum } from "../enums/EmailVerificationStatusEnum";
 import { IEmailVerificationsRepository } from "../interfaces/IEmailVerificationsRepository";
+import { emailTokenGenerator } from "../utils/emailTokenGenerator";
 
 @injectable()
 export default class CreateEmailVerificationService {
@@ -19,9 +19,9 @@ export default class CreateEmailVerificationService {
       email,
       token,
       expiresAt: addMinutes(new Date(), 2),
-      status: EmailVerificationStatus.ACTIVE
-    }
-    
+      status: EmailVerificationStatusEnum.ACTIVE,
+    };
+
     return await this.repository.create(verificationData);
   }
 }

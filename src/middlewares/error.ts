@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError } from "../shared/errors/apiError";
+import { ApiError } from "../errors/apiError";
 
 export const errorMiddleware = (
   error: Error & Partial<ApiError>,
@@ -10,7 +10,7 @@ export const errorMiddleware = (
   const statusCode = error.statusCode ?? 500;
   console.error(error);
   
-  const message = error.statusCode ? error.message : "Erro interno no servidor.";
+  const message = error.statusCode ? error.message : "Internal server error.";
 
   return res.status(statusCode).json({ message });
 }
