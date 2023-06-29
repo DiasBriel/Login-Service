@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateEmailVerificationTable1686790415661
+export class CreateEmailVerificationTable1687470135625
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -33,6 +33,12 @@ export class CreateEmailVerificationTable1686790415661
             name: "createdAt",
             type: "timestamp",
             default: "now()",
+          },
+          {
+            name: "status",
+            type: "enum",
+            enum: ["expired", "active"],
+            default: "'active'",
           },
         ],
       })

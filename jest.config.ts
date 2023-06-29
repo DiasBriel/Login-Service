@@ -1,3 +1,4 @@
+import "reflect-metadata"
 export default {
   clearMocks: true,
   collectCoverage: true,

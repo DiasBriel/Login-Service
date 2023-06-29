@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { BadRequestError } from "../../shared/errors/apiError";
-import { createUserValidation } from "../../shared/validators/createUserValidation";
+import { BadRequestError } from "../../errors/apiError";
+import { createUserValidation } from "../../validators/userValidation";
 
 describe("Create user validation", () => {
   let req: Request;
@@ -13,6 +13,7 @@ describe("Create user validation", () => {
         name: "User Test",
         email: "user.test@email.com",
         password: "Password123@",
+        status: "pending verification"
       },
     } as Request;
     res = {} as Response;
@@ -61,6 +62,12 @@ describe("Create user validation", () => {
 
   it("should throw BadRequestError if password is not valid", () => {
     req.body.password = "password";
+
+    expect(() => createUserValidation(req, res, next)).toThrow(BadRequestError);
+  });
+
+  it("should throw BadRequestError if status is missing", () => {
+    delete req.body.status;
 
     expect(() => createUserValidation(req, res, next)).toThrow(BadRequestError);
   });

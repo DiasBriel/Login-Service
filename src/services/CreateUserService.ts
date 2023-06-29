@@ -1,15 +1,20 @@
 import { inject, injectable } from "tsyringe";
 import User from "../entities/User";
 import { IUsersRepository } from "../interfaces/IUsersRepository";
+import { hash } from "bcrypt"
 
 @injectable()
 export default class CreateUserService {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: IUsersRepository
+    private repository: IUsersRepository
   ) {}
 
   public async execute(data: Partial<User>): Promise<User> {
-    return await this.usersRepository.create(data);
+    const hashedPassword = await hash(data.password, 10);
+    
+    Object.assign(data, { password: hashedPassword });
+
+    return await this.repository.create(data);
   }
 }

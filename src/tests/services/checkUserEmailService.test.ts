@@ -1,9 +1,9 @@
-import "reflect-metadata"
+import "reflect-metadata";
 import { container } from "tsyringe";
 import CheckUserEmailService from "../../services/CheckUserEmailService"
-import { ConflictError } from "../../shared/errors/apiError";
+import { ConflictError } from "../../errors/apiError";
 
-describe("Check Email Service", () => {
+describe("Check User Email Service", () => {
   it('Should check if email already exists', async () => {
     const usersRepositoryMock = {
       findOneByEmail: jest.fn().mockReturnValue(Promise.resolve({})),
@@ -15,7 +15,7 @@ describe("Check Email Service", () => {
     try {
       await checkUserEmailService.execute('email@test.com');
     } catch (error) {
-      expect(error.message).toBe('Este e-mail já está cadastrado!');
+      expect(error.message).toBe('This email is already registered!');
     }
   
     expect(usersRepositoryMock.findOneByEmail).toHaveBeenCalledWith('email@test.com');

@@ -1,4 +1,4 @@
-import "reflect-metadata"
+import "reflect-metadata";
 import CreateUserService from "../../services/CreateUserService";
 
 describe("Create User Service", () => {
@@ -6,22 +6,21 @@ describe("Create User Service", () => {
     const createData = {
       name: "User Test",
       email: "email@test.com",
-      password: "testing!1"
-    }
-
-    const createdUser = {
-      id: 1,
-      name: "User Test",
-      email: "email@test.com",
-    }
+      password: "testing!1",
+    };
 
     const usersRepositoryMock = {
-      create: jest.fn().mockReturnValue(Promise.resolve(createdUser)),
+      create: jest.fn().mockReturnValue(Promise.resolve(createData)),
     } as any;
-    
-    const createUserService = new CreateUserService(usersRepositoryMock);
 
-    expect(createUserService.execute(createData));
-    expect(usersRepositoryMock.create).toBeCalledWith(createData);
-  })
-})
+    const createUserService = new CreateUserService(usersRepositoryMock);
+    const createdUser = await createUserService.execute(createData);
+
+    expect(usersRepositoryMock.create).toHaveBeenCalledWith({
+      ...createData,
+      password: expect.any(String)
+    });
+
+    expect(createdUser).toEqual(createData);
+  });
+});

@@ -12,5 +12,6 @@
     "forceConsistentCasingInFileNames": true,
     "strict": false,               
     "skipLibCheck": true,    
+    "noUnusedLocals": true
   },             
 }
